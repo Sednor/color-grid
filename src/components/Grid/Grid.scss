@@ -1,0 +1,54 @@
+.grid {
+  width: 100%;
+}
+
+.row {
+  height: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+
+  &__horizontal-group {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    &__small{
+      height: 50%;
+    }
+  }
+
+  &__vertical-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+}
+
+.box__container {
+  box-sizing: border-box;
+  padding: 6px;
+  height: 100%;
+  width: 100%;
+  &.small{
+    height: 50%;
+  }
+}
+.row2 {
+  height: 300px;
+  width: 100%;
+}
+
+
+
+
