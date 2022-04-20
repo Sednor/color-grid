@@ -1,10 +1,10 @@
-import React from 'react'
-import {Grid} from "../Grid"
+import React from 'react';
+import { Grid } from '../Grid';
 
 function App() {
   return (
     <div>
-      <Grid/>
+      <Grid />
     </div>
   );
 }
