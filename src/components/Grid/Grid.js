@@ -9,16 +9,12 @@ const getRandomColor = () => {
 export const Grid = () => {
   const [screenWidth, setScreenWidth] = React.useState(window.innerWidth)
 
-  const handleWindowResize = () => {
-    setScreenWidth(window.innerWidth)
-  }
+  const handleWindowResize = () => setScreenWidth(window.innerWidth)
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowResize)
     return () => window.removeEventListener('resize', handleWindowResize)
-
   }, [])
-
 
   const onChangeColor = () => {
     const elements = [...document.getElementsByClassName('box')]
@@ -36,7 +32,8 @@ export const Grid = () => {
                onClick={() => onChangeColor()}>
             <div className="box" style={{ backgroundColor: getRandomColor() }}>{value}</div>
           </div>
-        return className ? <div key={value} className={className}
+
+        return className ? <div className={className}
                                 style={{ order: isMobile ? mobileOrder : null }}>{renderColumn}</div> : renderColumn
       })
 
