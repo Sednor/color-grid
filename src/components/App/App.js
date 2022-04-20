@@ -3,7 +3,7 @@ import {Grid} from "../Grid"
 
 function App() {
   return (
-    <div className="app__container">
+    <div>
       <Grid/>
     </div>
   );
