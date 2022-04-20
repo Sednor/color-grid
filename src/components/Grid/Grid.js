@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { gridConfig } from './gridConfig';
 import './Grid.scss';
 
@@ -7,7 +7,8 @@ const getRandomColor = () => {
 };
 
 export const Grid = () => {
-  const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [backgroundColors, setBackgroundColors] = useState({});
 
   const handleWindowResize = () => setScreenWidth(window.innerWidth);
 
@@ -17,8 +18,11 @@ export const Grid = () => {
   }, []);
 
   const onChangeColor = () => {
-    const elements = [...document.getElementsByClassName('box')];
-    elements.map(box => box.setAttribute('style', `background-color: ${getRandomColor()}`));
+    const newColors = {};
+    for (let key in backgroundColors) {
+      newColors[key] = getRandomColor();
+    }
+    return setBackgroundColors(newColors);
   };
 
   const gridMapper = (rows) => {
@@ -27,10 +31,11 @@ export const Grid = () => {
     return rows.map((row) => {
       const renderRow = row.columns.map((column) => {
         const { rows, value, containerHeight, className, mobileOrder } = column;
+        if (!backgroundColors[value]) backgroundColors[value] = getRandomColor();
         const renderColumn = rows ? gridMapper(rows) :
           <div key={value} className={`box__container ${containerHeight ? containerHeight : ''}`}
                onClick={() => onChangeColor()}>
-            <div className="box" style={{ backgroundColor: getRandomColor() }}>{value}</div>
+            <div className="box" style={{ backgroundColor: backgroundColors[value] }}>{value}</div>
           </div>;
 
         return className ? <div className={className}
